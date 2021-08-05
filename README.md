@@ -108,7 +108,7 @@ SELECT
     marks.course,
     marks.assignnum,
     marks.1stmark,
-    marks.2stmark
+    marks.2rdmark
 FROM
     students
 INNER JOIN marks ON students.studnum = marks.studnum
