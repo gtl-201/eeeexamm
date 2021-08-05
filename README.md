@@ -97,60 +97,20 @@ CREATE VIEW infoStud AS
 
 ======================================================================================
 
-DELIMITER
-    $$
-CREATE PROCEDURE getInfoStud(
-    IN studnum INT(11),
-    OUT surname VARCHAR(20),
-    firstname VARCHAR(6),
-    address VARCHAR(40),
-    birthdate DATE,
-    gender TINYINT(1)
-)
-BEGIN
-    DECLARE
-        sName VARCHAR(20) DEFAULT NULL ; DECLARE fName VARCHAR(6) DEFAULT NULL ; DECLARE addre VARCHAR(40) DEFAULT NULL ; DECLARE birth DATE DEFAULT NULL ; DECLARE gender TINYINT(1) DEFAULT NULL ;
-    SELECT
-        `surname`
-    INTO sName
-FROM
-    students
-WHERE
-    students.studnum = studnum
+CREATE PROCEDURE LayChiTietSinhVien(IN MaSV INT)
 SELECT
-    `firstname`
-INTO fName
+    students.studnum,
+    students.firstname,
+    students.surname,
+    students.address,
+    students.birthdate,
+    students.gender,
+    marks.course,
+    marks.assignnum,
+    marks.1stmark,
+    marks.2stmark
 FROM
     students
+INNER JOIN marks ON students.studnum = marks.studnum
 WHERE
-    students.studnum = studnum
-SELECT
-    `address`
-INTO addre
-FROM
-    students
-WHERE
-    students.studnum = studnum
-SELECT
-    `birthdate`
-INTO birth
-FROM
-    students
-WHERE
-    students.studnum = studnum
-SELECT
-    `gender`
-INTO gender
-FROM
-    students
-WHERE
-    students.studnum = studnum
-SET
-    surname = InfoStud(sName) ;
-    firstname = InfoStud(fName) ;
-    address = InfoStud(addre) ;
-    birthdate = InfoStud(birth) ;
-    gender = InfoStud(gender) ; 
-    END $$
-DELIMITER
-    ;
+    students.studnum = MaSV
