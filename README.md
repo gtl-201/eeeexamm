@@ -97,7 +97,7 @@ CREATE VIEW infoStud AS
 
 ======================================================================================
 
-CREATE PROCEDURE LayChiTietSinhVien(IN MaSV INT)
+CREATE PROCEDURE studentInfo(IN MaSV INT)
 SELECT
     students.studnum,
     students.firstname,
